@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import zhang.zhentao.refereeresource.R;
 import zhang.zhentao.refereeresource.util.ContextUtil;
@@ -17,21 +18,21 @@ import zhang.zhentao.refereeresource.util.ContextUtil;
 
 public class InfoFragment extends Fragment implements View.OnClickListener{
 
-    private Button btnLogin;
+    private LinearLayout lyInfo;
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle){
         view = inflater.inflate(R.layout.fragment_info,viewGroup,false);
-        btnLogin = (Button)view.findViewById(R.id.btn_fragment_info_login);
-        btnLogin.setOnClickListener(this);
+        lyInfo = (LinearLayout)view.findViewById(R.id.ly_fragment_info_info);
+        lyInfo.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_fragment_info_login:
-                Intent intent = new Intent(ContextUtil.getInstance(),LoginActivity.class);
+            case R.id.ly_fragment_info_info:
+                Intent intent = new Intent(ContextUtil.getInstance(),InfoActivity.class);
                 startActivity(intent);
                 break;
         }

@@ -21,6 +21,7 @@
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.InfoActivity"/>
     </application>
     <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"/>

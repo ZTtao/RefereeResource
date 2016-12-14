@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import zhang.zhentao.refereeresource.R;
+import zhang.zhentao.refereeresource.service.LoginService;
+import zhang.zhentao.refereeresource.util.ContextUtil;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -36,8 +38,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnPost.setOnClickListener(this);
         btnChat.setOnClickListener(this);
         btnInfo.setOnClickListener(this);
-
+        LoginService loginService = new LoginService();
+        loginService.loginIM(ContextUtil.getUserInstance().getNickName());
         setDefaultFragment();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
     }
     private void setDefaultFragment(){
         FragmentManager fragmentManager = getFragmentManager();

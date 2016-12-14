@@ -20,6 +20,9 @@ public class ContextUtil extends Application {
     public static User getUserInstance(){
         return userInstance;
     }
+    public static void setUserInstance(User user){
+        userInstance = user;
+    }
     @Override
     public void onCreate(){
         super.onCreate();

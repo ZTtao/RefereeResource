@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,9 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import net.openmob.mobileimsdk.android.ClientCoreSDK;
+import net.openmob.mobileimsdk.android.core.LocalUDPDataSender;
+
 import zhang.zhentao.refereeresource.R;
+import zhang.zhentao.refereeresource.entity.User;
 import zhang.zhentao.refereeresource.listener.LoginListener;
 import zhang.zhentao.refereeresource.service.LoginService;
+import zhang.zhentao.refereeresource.util.ContextUtil;
 import zhang.zhentao.refereeresource.util.DBOpenHelper;
 
 /**
@@ -51,7 +57,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
-                        finish();
+                        //finish();
                         break;
                     case 0x123:
                         Toast.makeText(LoginActivity.this,"账户名或密码错误",Toast.LENGTH_SHORT).show();
@@ -74,24 +80,19 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 LoginService service = new LoginService();
                 service.setListener(new LoginListener() {
                     @Override
-                    public void onSuccess(int errorCode, String result) {
-                        if(errorCode==100){
-                            Log.d("LoginActivity",result);
-//                            DBOpenHelper helper = new DBOpenHelper(LoginActivity.this,"db_referee",null,1);
-//                            SQLiteDatabase db_referee = helper.getWritableDatabase();
-//                            db_referee.execSQL("delete from user;");
-//                            ContentValues values = new ContentValues();
-//                            values.put("nick_name",nickName);
-//                            db_referee.insert("user","nick_name",values);
+                    public void onSuccess(int errorCode, User user) {
+                        if(errorCode==100){     //登录成功
+                            Log.d("LoginActivity","登录成功,user:"+user.getNickName());
+                            ContextUtil.setUserInstance(user);
                             handler.sendEmptyMessage(0x122);
-                        }else{
-                            Log.d("LoginActivity",result);
+                        }else{      //账户名或密码错误
+                            Log.d("LoginActivity","账户名或密码错误");
                             handler.sendEmptyMessage(0x123);
                         }
                     }
 
                     @Override
-                    public void onError(int errorCode, String result) {
+                    public void onError(int errorCode, String result) {     //网络错误
                         Log.d("LoginActivity",result);
                         handler.sendEmptyMessage(0x124);
                     }
@@ -101,9 +102,58 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btn_login_register:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,200);
                 break;
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent intent){
+        switch (requestCode){
+            case 200:   //RegisterActivity传回的数据
+                switch (resultCode){
+                    case RESULT_OK:
+                        //注册成功
+                        if (ContextUtil.getUserInstance() != null){     //再次确认是否注册成功
+                            Intent intent1 = new Intent(LoginActivity.this,MainActivity.class);
+                            startActivityForResult(intent1,300);
+                        }
+                        break;
+                    case RESULT_CANCELED:
+                        //未注册
+                        break;
+                }
+                break;
+            case 300:   //MainActivity传回的数据
+
+                break;
+        }
+    }
+    @Override
+    public void finish(){
+        doLogout();
+        super.finish();
+        System.exit(0);
+    }
+    private void doLogout(){
+        new AsyncTask<Object,Integer,Integer>(){
+            @Override
+            protected Integer doInBackground(Object... params) {
+                int code = -1;
+                try{
+                    code = LocalUDPDataSender.getInstance(LoginActivity.this).sendLoginout();
+                }catch (Exception e){
+                    Log.d("LoginActivity",e.getMessage());
+                }
+                return code;
+            }
+            @Override
+            protected void onPostExecute(Integer code){
+                if(code == 0)
+                    Log.d("LoginActivity","注销登陆成功");
+                else
+                    Log.d("LoginActivity","注销登陆失败："+code);
+            }
+        }.execute();
     }
     private boolean checkAccountAndPassword(){
         String strAccount = nickName.trim();

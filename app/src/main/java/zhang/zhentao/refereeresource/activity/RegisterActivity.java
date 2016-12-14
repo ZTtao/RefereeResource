@@ -1,7 +1,10 @@
 package zhang.zhentao.refereeresource.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,7 @@ import zhang.zhentao.refereeresource.entity.User;
 import zhang.zhentao.refereeresource.listener.HttpCallbackListener;
 import zhang.zhentao.refereeresource.listener.RegisterListener;
 import zhang.zhentao.refereeresource.service.RegisterService;
+import zhang.zhentao.refereeresource.util.ContextUtil;
 import zhang.zhentao.refereeresource.util.HttpURLConnectionUtil;
 
 /**
@@ -38,6 +42,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
     private EditText etNote;
     private Button btnRegister;
     private RadioGroup rdGender;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle bundle){
@@ -56,6 +61,22 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
         btnRegister = (Button)findViewById(R.id.btn_register_register);
         btnRegister.setOnClickListener(this);
         rdGender = (RadioGroup)findViewById(R.id.rd_register_gender);
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case 0x100:
+                        Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 0x101:
+                        Toast.makeText(RegisterActivity.this,"昵称已存在",Toast.LENGTH_SHORT).show();
+                        break;
+                    case 0x104:
+                        Toast.makeText(RegisterActivity.this,"网络连接错误",Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
     }
 
     @Override
@@ -63,7 +84,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.btn_register_register:
                 if(checkInfo()) {
-                    User user = new User();
+                    final User user = new User();
                     user.setNickName(etNickName.getText().toString());
                     user.setRealName(etRealName.getText().toString());
                     user.setPassword(etPassword.getText().toString());
@@ -88,17 +109,33 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                         @Override
                         public void onSuccess(int errorCode, String result) {
                             Log.d("RegisterActivity", result);
+                            //注册成功
+                            ContextUtil.setUserInstance(user);
+                            handler.sendEmptyMessage(0x100);
+                            finish();
                         }
 
                         @Override
                         public void onError(int errorCode, String result) {
                             Log.d("RegisterActivity", result);
+                            //注册失败
+                            if(errorCode == 101)
+                                handler.sendEmptyMessage(0x101);
+                            else if(errorCode == 104)
+                                handler.sendEmptyMessage(0x104);
                         }
                     });
                     registerService.addUser(user);
                 }
                 break;
         }
+    }
+    @Override
+    public void finish(){
+        if(ContextUtil.getUserInstance() != null)
+            setResult(RESULT_OK);
+        else setResult(RESULT_CANCELED);
+        super.finish();
     }
     private boolean checkInfo(){
         String nickName = etNickName.getText().toString().trim();

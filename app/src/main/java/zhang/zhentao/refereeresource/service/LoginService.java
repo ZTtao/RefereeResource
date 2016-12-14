@@ -4,11 +4,16 @@ import android.util.Log;
 
 import net.openmob.mobileimsdk.android.core.LocalUDPDataSender;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
+import zhang.zhentao.refereeresource.entity.User;
 import zhang.zhentao.refereeresource.listener.GetPostListListener;
 import zhang.zhentao.refereeresource.listener.HttpCallbackListener;
 import zhang.zhentao.refereeresource.listener.LoginListener;
@@ -38,10 +43,12 @@ public class LoginService {
             @Override
             public void onFinish(String response) {
                 Log.d("LoginService",response);
-                response = response.replace("\"","");
-                if(response.equals("登录成功"))
-                    listener.onSuccess(100,response);
-                else listener.onSuccess(101,response);
+                response = response.substring(1,response.length()-1);
+                response = response.replace("\\","");
+                if(!response.equals("账号或密码错误")) {   //登录成功
+                    listener.onSuccess(100, jsonToUser(response));
+                }
+                else listener.onSuccess(101,null);      //登录失败
             }
 
             @Override
@@ -51,7 +58,7 @@ public class LoginService {
         });
     }
 
-    public void loginIM(String account,String password){
+    public void loginIM(String account){
         IMClientManager.getInstance(ContextUtil.getInstance()).initMobileIMSDK();
         onLoginSuccessObserver = new Observer() {
             @Override
@@ -66,7 +73,7 @@ public class LoginService {
         };
 
         IMClientManager.getInstance(ContextUtil.getInstance()).getBaseEventListener().setLoginOkForLaunchObserver(onLoginSuccessObserver);
-        new LocalUDPDataSender.SendLoginDataAsync(ContextUtil.getInstance(),account,password){
+        new LocalUDPDataSender.SendLoginDataAsync(ContextUtil.getInstance(),account,"0"){
             @Override
             protected void fireAfterSendLogin(int code){
                 if(code == 0){
@@ -77,5 +84,33 @@ public class LoginService {
             }
         }.execute();
     }
-
+    private User jsonToUser(String json){
+        User user = new User();
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            user.setUserId(jsonObject.getInt("userId"));
+            user.setNickName(jsonObject.getString("nickName"));
+            user.setGender(jsonObject.getString("gender"));
+            user.setHeight(Float.parseFloat(jsonObject.getString("height")));
+            user.setWeight(Float.parseFloat(jsonObject.getString("weight")));
+            user.setRegisterTime(new Date(jsonObject.getLong("registerTime")));
+            user.setIsDelete(jsonObject.getBoolean("isDelete"));
+            user.setPassword(jsonObject.getString("password"));
+            if(jsonObject.has("realName"))
+                user.setRealName(jsonObject.getString("realName"));
+            if(jsonObject.has("email"))
+                user.setEmail(jsonObject.getString("email"));
+            if(jsonObject.has("phone"))
+                user.setPhone(jsonObject.getString("phone"));
+            if(jsonObject.has("address"))
+                user.setAddress(jsonObject.getString("address"));
+            if(jsonObject.has("note"))
+                user.setNote(jsonObject.getString("note"));
+            if(jsonObject.has("other"))
+                user.setOther(jsonObject.getString("other"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }
