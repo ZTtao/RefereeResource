@@ -27,7 +27,8 @@
         <EditText
             android:id="@+id/et_activity_info_realname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +41,8 @@
         <RadioGroup
             android:id="@+id/rd_activity_info_gender"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
             <RadioButton
                 android:id="@+id/rb_activity_info_male"
                 android:layout_width="wrap_content"
@@ -67,7 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="0"/>
+            android:text="0"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,7 +85,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,7 +99,8 @@
         <EditText
             android:id="@+id/et_activity_info_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +113,8 @@
         <EditText
             android:id="@+id/et_activity_info_phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +127,8 @@
         <EditText
             android:id="@+id/et_activity_info_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,11 +141,18 @@
         <EditText
             android:id="@+id/et_activity_info_note"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
         <Button
-            android:id="@+id/btn_activity_info_register_edit"
+            android:id="@+id/btn_activity_info_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="修改"/>
+        <Button
+            android:id="@+id/btn_activity_info_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:visibility="gone"/>
     </LinearLayout>
 </ScrollView>
