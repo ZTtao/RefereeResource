@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,12 +42,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
         LoginService loginService = new LoginService();
         loginService.loginIM(ContextUtil.getUserInstance().getNickName());
         setDefaultFragment();
+
     }
 
     @Override
     protected void onResume(){
         super.onResume();
     }
+    @Override
+    public void finish(){
+        super.finish();
+    }
+
     private void setDefaultFragment(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

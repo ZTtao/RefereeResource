@@ -88,8 +88,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener{
                     user.setNickName(etNickName.getText().toString());
                     user.setRealName(etRealName.getText().toString());
                     user.setPassword(etPassword.getText().toString());
-                    user.setHeight(Float.parseFloat(etHeight.getText().toString()));
-                    user.setWeight(Float.parseFloat(etWeight.getText().toString()));
+                    user.setHeight(Float.parseFloat(etHeight.getText().toString().equals("")?"0":etHeight.getText().toString()));
+                    user.setWeight(Float.parseFloat(etWeight.getText().toString().equals("")?"0":etWeight.getText().toString()));
                     user.setEmail(etEmail.getText().toString());
                     user.setPhone(etPhone.getText().toString());
                     user.setAddress(etAddress.getText().toString());

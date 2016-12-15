@@ -56,8 +56,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     case 0x122:
                         Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                        startActivity(intent);
-                        //finish();
+                        startActivityForResult(intent,300);
                         break;
                     case 0x123:
                         Toast.makeText(LoginActivity.this,"账户名或密码错误",Toast.LENGTH_SHORT).show();
@@ -124,7 +123,17 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 }
                 break;
             case 300:   //MainActivity传回的数据
-
+                switch (resultCode){
+                    case RESULT_OK:
+                        //logout
+                        Log.d("LoginActivity","logout");
+                        break;
+                    default:
+                        //直接退出程序
+                        Log.d("LoginActivity","finish");
+                        finish();
+                        break;
+                }
                 break;
         }
     }
