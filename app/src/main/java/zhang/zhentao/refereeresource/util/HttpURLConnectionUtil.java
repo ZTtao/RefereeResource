@@ -50,6 +50,8 @@ public class HttpURLConnectionUtil {
                         while ((line = reader.readLine())!=null){
                             response.append(line);
                         }
+                        reader.close();
+                        inputStream.close();
                         if(listener != null){
                             listener.onFinish(response.toString());
                         }
@@ -59,6 +61,7 @@ public class HttpURLConnectionUtil {
                         }
                     }
                 }catch (Exception e){
+                    e.printStackTrace();
                     if(listener != null){
                         listener.onError(new RuntimeException("连接错误"));
                     }

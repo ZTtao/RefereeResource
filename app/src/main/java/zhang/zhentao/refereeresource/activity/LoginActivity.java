@@ -127,6 +127,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     case RESULT_OK:
                         //logout
                         Log.d("LoginActivity","logout");
+                        doLogout();
                         break;
                     default:
                         //直接退出程序

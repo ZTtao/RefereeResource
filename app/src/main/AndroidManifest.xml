@@ -22,6 +22,8 @@
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.InfoActivity"/>
+        <activity android:name=".activity.AddPostActivity"/>
+        <activity android:name=".activity.PostDetailActivity"/>
     </application>
     <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"/>
