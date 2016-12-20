@@ -24,6 +24,7 @@
         <activity android:name=".activity.InfoActivity"/>
         <activity android:name=".activity.AddPostActivity"/>
         <activity android:name=".activity.PostDetailActivity"/>
+        <activity android:name=".activity.RefereeActivity"/>
     </application>
     <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"/>

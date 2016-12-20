@@ -2,6 +2,7 @@ package zhang.zhentao.refereeresource.util;
 
 import android.app.Application;
 
+import zhang.zhentao.refereeresource.entity.Referee;
 import zhang.zhentao.refereeresource.entity.User;
 
 
@@ -12,6 +13,7 @@ import zhang.zhentao.refereeresource.entity.User;
 public class ContextUtil extends Application {
     private static ContextUtil instance;
     private static User userInstance = null;
+    private static Referee refereeInstance = null;
 
     public static ContextUtil getInstance(){
         return instance;
@@ -22,6 +24,16 @@ public class ContextUtil extends Application {
     }
     public static void setUserInstance(User user){
         userInstance = user;
+    }
+    public static void clearData(){
+        userInstance = null;
+        refereeInstance = null;
+    }
+    public static Referee getRefereeInstance(){
+        return refereeInstance;
+    }
+    public static void setRefereeInstance(Referee referee){
+        refereeInstance = referee;
     }
     @Override
     public void onCreate(){

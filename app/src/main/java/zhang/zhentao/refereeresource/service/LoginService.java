@@ -15,6 +15,7 @@ import java.util.Observer;
 
 import zhang.zhentao.refereeresource.entity.User;
 import zhang.zhentao.refereeresource.listener.GetPostListListener;
+import zhang.zhentao.refereeresource.listener.GetRefereeInfoListener;
 import zhang.zhentao.refereeresource.listener.HttpCallbackListener;
 import zhang.zhentao.refereeresource.listener.LoginListener;
 import zhang.zhentao.refereeresource.util.ContextUtil;

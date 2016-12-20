@@ -20,6 +20,16 @@
             android:text="USER"/>
     </LinearLayout>
     <Button
+        android:id="@+id/btn_fragment_info_referee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="referee"/>
+    <Button
+        android:id="@+id/btn_fragment_info_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="player"/>
+    <Button
         android:id="@+id/btn_fragment_info_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

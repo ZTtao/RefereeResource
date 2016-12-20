@@ -23,6 +23,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     private LinearLayout lyInfo;
     private View view;
     private Button btnLogout;
+    private Button btnReferee;
+    private Button btnPlayer;
     private Activity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle){
@@ -31,6 +33,10 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         lyInfo.setOnClickListener(this);
         btnLogout = (Button)view.findViewById(R.id.btn_fragment_info_logout);
         btnLogout.setOnClickListener(this);
+        btnReferee = (Button)view.findViewById(R.id.btn_fragment_info_referee);
+        btnPlayer = (Button)view.findViewById(R.id.btn_fragment_info_player);
+        btnReferee.setOnClickListener(this);
+        btnPlayer.setOnClickListener(this);
         return view;
     }
     @Override
@@ -47,7 +53,14 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.btn_fragment_info_logout:
                 activity.setResult(Activity.RESULT_OK);
+                ContextUtil.clearData();
                 activity.finish();
+                break;
+            case R.id.btn_fragment_info_referee:
+                startActivity(new Intent(ContextUtil.getInstance(),RefereeActivity.class));
+                break;
+            case R.id.btn_fragment_info_player:
+
                 break;
         }
     }

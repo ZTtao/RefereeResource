@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/btn_activity_referee_info_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="be a referee"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:id="@+id/ly_activity_referee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="执裁时间"/>
+        <TextView
+            android:id="@+id/tv_activity_referee_start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5years"/>
+        <DatePicker
+            android:id="@+id/dp_activity_referee_start_time"
+            android:layout_width="wrap_content"
+            android:calendarViewShown="false"
+            android:theme="@android:style/Theme.Holo.Light"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="经历"/>
+        <TextView
+            android:id="@+id/tv_activity_referee_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="experience"/>
+        <EditText
+            android:id="@+id/et_activity_referee_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="荣誉"/>
+        <TextView
+            android:id="@+id/tv_activity_referee_honor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="honor"/>
+        <EditText
+            android:id="@+id/et_activity_referee_honor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="等级"/>
+        <TextView
+            android:id="@+id/tv_activity_referee_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="rank"/>
+        <EditText
+            android:id="@+id/et_activity_referee_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注"/>
+        <TextView
+            android:id="@+id/tv_activity_referee_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="note"/>
+        <EditText
+            android:id="@+id/et_activity_referee_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_activity_referee_info_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"/>
+        <Button
+            android:id="@+id/btn_activity_referee_info_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"/>
+        <Button
+            android:id="@+id/btn_activity_referee_info_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"/>
+    </LinearLayout>
+</LinearLayout>

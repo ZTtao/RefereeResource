@@ -18,9 +18,12 @@ import net.openmob.mobileimsdk.android.ClientCoreSDK;
 import net.openmob.mobileimsdk.android.core.LocalUDPDataSender;
 
 import zhang.zhentao.refereeresource.R;
+import zhang.zhentao.refereeresource.entity.Referee;
 import zhang.zhentao.refereeresource.entity.User;
+import zhang.zhentao.refereeresource.listener.GetRefereeInfoListener;
 import zhang.zhentao.refereeresource.listener.LoginListener;
 import zhang.zhentao.refereeresource.service.LoginService;
+import zhang.zhentao.refereeresource.service.RefereeService;
 import zhang.zhentao.refereeresource.util.ContextUtil;
 import zhang.zhentao.refereeresource.util.DBOpenHelper;
 
@@ -83,6 +86,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         if(errorCode==100){     //登录成功
                             Log.d("LoginActivity","登录成功,user:"+user.getNickName());
                             ContextUtil.setUserInstance(user);
+                            getRefereeInfo();
                             handler.sendEmptyMessage(0x122);
                         }else{      //账户名或密码错误
                             Log.d("LoginActivity","账户名或密码错误");
@@ -164,6 +168,22 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     Log.d("LoginActivity","注销登陆失败："+code);
             }
         }.execute();
+    }
+    private void getRefereeInfo(){
+        RefereeService refereeService = new RefereeService();
+        refereeService.setGetRefereeInfoListener(new GetRefereeInfoListener() {
+            @Override
+            public void onSuccess(int errorCode, Referee referee) {
+                Log.d("LoginActivity","success:"+referee.getRefereeId());
+                ContextUtil.setRefereeInstance(referee);
+            }
+
+            @Override
+            public void onError(int errorCode, String result) {
+                Log.d("LoginActivity",result);
+            }
+        });
+        refereeService.getRefereeInfo(ContextUtil.getUserInstance().getNickName());
     }
     private boolean checkAccountAndPassword(){
         String strAccount = nickName.trim();
