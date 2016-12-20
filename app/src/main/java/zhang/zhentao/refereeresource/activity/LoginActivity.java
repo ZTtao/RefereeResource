@@ -18,11 +18,14 @@ import net.openmob.mobileimsdk.android.ClientCoreSDK;
 import net.openmob.mobileimsdk.android.core.LocalUDPDataSender;
 
 import zhang.zhentao.refereeresource.R;
+import zhang.zhentao.refereeresource.entity.Player;
 import zhang.zhentao.refereeresource.entity.Referee;
 import zhang.zhentao.refereeresource.entity.User;
+import zhang.zhentao.refereeresource.listener.GetPlayerInfoListener;
 import zhang.zhentao.refereeresource.listener.GetRefereeInfoListener;
 import zhang.zhentao.refereeresource.listener.LoginListener;
 import zhang.zhentao.refereeresource.service.LoginService;
+import zhang.zhentao.refereeresource.service.PlayerService;
 import zhang.zhentao.refereeresource.service.RefereeService;
 import zhang.zhentao.refereeresource.util.ContextUtil;
 import zhang.zhentao.refereeresource.util.DBOpenHelper;
@@ -87,6 +90,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                             Log.d("LoginActivity","登录成功,user:"+user.getNickName());
                             ContextUtil.setUserInstance(user);
                             getRefereeInfo();
+                            getPlayerInfo();
                             handler.sendEmptyMessage(0x122);
                         }else{      //账户名或密码错误
                             Log.d("LoginActivity","账户名或密码错误");
@@ -184,6 +188,22 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             }
         });
         refereeService.getRefereeInfo(ContextUtil.getUserInstance().getNickName());
+    }
+    private void getPlayerInfo(){
+        PlayerService playerService = new PlayerService();
+        playerService.setGetPlayerInfoListener(new GetPlayerInfoListener() {
+            @Override
+            public void onSuccess(int errorCode, Player player) {
+                Log.d("LoginActivity","success player:"+player.getPlayerId());
+                ContextUtil.setPlayerInstance(player);
+            }
+
+            @Override
+            public void onError(int errorCode, String result) {
+                Log.d("LoginActivity",result);
+            }
+        });
+        playerService.getPlayerInfo(ContextUtil.getUserInstance().getNickName());
     }
     private boolean checkAccountAndPassword(){
         String strAccount = nickName.trim();

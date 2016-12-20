@@ -60,7 +60,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(ContextUtil.getInstance(),RefereeActivity.class));
                 break;
             case R.id.btn_fragment_info_player:
-
+                startActivity(new Intent(ContextUtil.getInstance(),PlayerActivity.class));
                 break;
         }
     }
