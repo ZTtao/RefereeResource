@@ -26,6 +26,9 @@
         <activity android:name=".activity.PostDetailActivity"/>
         <activity android:name=".activity.RefereeActivity"/>
         <activity android:name=".activity.PlayerActivity"/>
+        <activity android:name=".activity.RefereeReservationActivity"/>
+        <activity android:name=".activity.AddRefereeReservationActivity"/>
+        <activity android:name=".activity.RefereeReservationDetailActivity"/>
     </application>
     <uses-permission android:name="android.permission.GET_TASKS"></uses-permission>
     <uses-permission android:name="android.permission.INTERNET"/>

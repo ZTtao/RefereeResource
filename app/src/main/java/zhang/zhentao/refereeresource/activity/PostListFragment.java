@@ -35,6 +35,8 @@ public class PostListFragment extends Fragment implements View.OnClickListener,A
     private Handler handler;
     private Runnable runnable;
     private Button btnAdd;
+    private Button btnReferee;
+    private Button btnGame;
     private Activity activity;
 
     @Override
@@ -43,6 +45,10 @@ public class PostListFragment extends Fragment implements View.OnClickListener,A
         listView = (ListView) view.findViewById(R.id.fragment_post_listview);
         btnAdd = (Button)view.findViewById(R.id.btn_fragment_post_add);
         btnAdd.setOnClickListener(this);
+        btnReferee = (Button)view.findViewById(R.id.btn_fragment_post_referee_reservation);
+        btnReferee.setOnClickListener(this);
+        btnGame = (Button)view.findViewById(R.id.btn_fragment_post_game_reservation);
+        btnGame.setOnClickListener(this);
         list = new ArrayList<>();
         adapter = new PostListAdapter(ContextUtil.getInstance(),R.layout.item_post_list,list);
         listView.setAdapter(adapter);
@@ -90,6 +96,12 @@ public class PostListFragment extends Fragment implements View.OnClickListener,A
             case R.id.btn_fragment_post_add:
                 Intent intent = new Intent(ContextUtil.getInstance(),AddPostActivity.class);
                 startActivityForResult(intent,100);
+                break;
+            case R.id.btn_fragment_post_referee_reservation:
+                startActivity(new Intent(ContextUtil.getInstance(),RefereeReservationActivity.class));
+                break;
+            case R.id.btn_fragment_post_game_reservation:
+
                 break;
         }
     }

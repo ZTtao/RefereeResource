@@ -2,11 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
         android:id="@+id/btn_fragment_post_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"/>
+        <Button
+            android:id="@+id/btn_fragment_post_referee_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="refereeR"/>
+        <Button
+            android:id="@+id/btn_fragment_post_game_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gameR"/>
+    </LinearLayout>
     <ListView
         android:id="@+id/fragment_post_listview"
         android:layout_width="match_parent"

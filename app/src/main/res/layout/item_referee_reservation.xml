@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USER"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000-10-10 10:10"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地点"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADDRESS"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_gtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000-10-10 10:10"/>
+</LinearLayout>

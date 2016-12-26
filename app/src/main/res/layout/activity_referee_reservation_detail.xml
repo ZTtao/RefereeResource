@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="time"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000-10-10 01:10"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="address"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADDRESS"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="game state"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Game State"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="referee count"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Count"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="referee require"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_require"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Require"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reward"/>
+    <TextView
+        android:id="@+id/tv_activity_referee_reservation_detail_reward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reward"/>
+    <Button
+        android:id="@+id/btn_activity_referee_reservation_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="报名"
+        android:visibility="gone"/>
+</LinearLayout>
