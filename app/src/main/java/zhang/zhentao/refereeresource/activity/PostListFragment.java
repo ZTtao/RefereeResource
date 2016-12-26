@@ -101,7 +101,7 @@ public class PostListFragment extends Fragment implements View.OnClickListener,A
                 startActivity(new Intent(ContextUtil.getInstance(),RefereeReservationActivity.class));
                 break;
             case R.id.btn_fragment_post_game_reservation:
-
+                startActivity(new Intent(ContextUtil.getInstance(),GameReservationActivity.class));
                 break;
         }
     }

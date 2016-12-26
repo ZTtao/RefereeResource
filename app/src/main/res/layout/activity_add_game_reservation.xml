@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="time"/>
+    <DatePicker
+        android:id="@+id/dp_activity_add_game_reservation"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:calendarViewShown="false"
+        android:theme="@android:style/Theme.Holo.Light" />
+    <TimePicker
+        android:id="@+id/tp_activity_add_game_reservation"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:theme="@android:style/Theme.Holo.Light" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="address"/>
+    <EditText
+        android:id="@+id/et_activity_add_game_reservation_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="team"/>
+    <EditText
+        android:id="@+id/et_activity_add_game_reservation_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="level"/>
+    <EditText
+        android:id="@+id/et_activity_add_game_reservation_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_activity_add_game_reservation_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"/>
+</LinearLayout>
